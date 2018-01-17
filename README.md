@@ -5,7 +5,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/YardEight/shoppingcart/v/unstable)](https://packagist.org/packages/YardEight/shoppingcart)
 [![License](https://poser.pugx.org/YardEight/shoppingcart/license)](https://packagist.org/packages/YardEight/shoppingcart)
 
-A simple shoppingcart implementation for Laravel.
+A simple shoppingcart implementation for Laravel based on [Crisane's](https://github.com/Crinsane/LaravelShoppingcart) code, with new features.
 
 ## Installation
 
@@ -14,22 +14,6 @@ Install the package through [Composer](http://getcomposer.org/).
 Run the Composer require command from the Terminal:
 
     composer require yardeight/shoppingcart
-    
-If you're using Laravel 5.5, this is all there is to do. 
-
-Should you still be on version 5.4 of Laravel, the final steps for you are to add the service provider of the package and alias the package. To do this open your `config/app.php` file.
-
-Add a new line to the `providers` array:
-
-	YardEight\Shoppingcart\ShoppingcartServiceProvider::class
-
-And optionally add a new line to the `aliases` array:
-
-	'Cart' => YardEight\Shoppingcart\Facades\Cart::class,
-
-Now you're ready to start using the shoppingcart in your application.
-
-**As of version 2 of this package it's possibly to use dependency injection to inject an instance of the Cart class into your controller or other class**
 
 ## Overview
 Look at one of the following topics to learn more about LaravelShoppingcart
@@ -163,6 +147,14 @@ If you want to completely remove the content of a cart, you can call the destroy
 Cart::destroy();
 ```
 
+### Cart::destroyInstances()
+
+If you want to completely remove all instances within your cart you may call the destroyInstances()method.
+
+```php
+Cart::destroyInstances();
+```
+
 ### Cart::total()
 
 The `total()` method can be used to get the calculated total of all items in the cart, given there price and quantity.
@@ -288,6 +280,15 @@ Cart::instance('shopping')->content();
 
 // And the count of the 'wishlist' cart again
 Cart::instance('wishlist')->count();
+
+// If you want to return an array of all instances that exist in your cart
+Cart::getAllInstances();
+
+// Counts all instances.
+Cart::countInstances();
+
+// Removed all instances from cart.
+Cart::destroyInstances();
 ```
 
 **N.B. Keep in mind that the cart stays in the last set instance for as long as you don't set a different one during script execution.**
