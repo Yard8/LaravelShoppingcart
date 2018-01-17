@@ -11,6 +11,7 @@ use YardEight\Shoppingcart\Contracts\Buyable;
 use YardEight\Shoppingcart\Exceptions\UnknownModelException;
 use YardEight\Shoppingcart\Exceptions\InvalidRowIDException;
 use YardEight\Shoppingcart\Exceptions\CartAlreadyStoredException;
+use Illuminate\Http\Request;
 
 class Cart
 {
@@ -64,6 +65,26 @@ class Cart
         $this->instance = sprintf('%s.%s', 'cart', $instance);
 
         return $this;
+    }
+
+    /**
+     * Retrieves all instances of cart
+     *
+     * @param string|null $instance
+     * @return \YardEight\Shoppingcart\Cart
+     */
+    public function getAllInstances()
+    {
+        return $this->session->get('cart');
+    }
+
+    /**
+     * Counts all instances of cart
+     *
+     */
+    public function countInstances()
+    {
+        return count($this->session->get('cart'));
     }
 
     /**
@@ -198,6 +219,19 @@ class Cart
     public function destroy()
     {
         $this->session->remove($this->instance);
+    }
+
+    /**
+     * Destroys all of the available cart instances.
+     *
+     * @return void
+     */
+    public function destroyInstances()
+    {
+        foreach ($this->getAllInstances() as $key => $instanceItems)  {
+
+            $this->session->remove('cart.'.$key);
+        }   
     }
 
     /**
