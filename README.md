@@ -7,6 +7,8 @@
 
 A simple shoppingcart implementation for Laravel based on [Crisane's](https://github.com/Crinsane/LaravelShoppingcart) code, with new features.
 
+**18 January 2018 Project Status** - Rewriting Cart Features, Adding New Features and Documentation.
+
 ## Installation
 
 Install the package through [Composer](http://getcomposer.org/). 
