@@ -67,6 +67,15 @@ class Cart
         return $this;
     }
 
+    public function instanceCreate($instance)
+    {
+        $instance = $instance ?: self::DEFAULT_INSTANCE;
+
+        $this->instance = sprintf('%s.%s', 'cart', $instance);
+
+        return $this;
+    }
+
     /**
      * Retrieves all instances of cart
      *
