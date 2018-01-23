@@ -103,7 +103,11 @@ class Cart
      */
     public function currentInstance()
     {
-        return str_replace('cart.', '', $this->instance);
+        $instance = key($this->session->get('cart'));
+        
+        $instance = $instance ?: self::DEFAULT_INSTANCE;
+
+        return $instance;
     }
 
     /**
