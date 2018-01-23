@@ -231,6 +231,16 @@ class Cart
     }
 
     /**
+     * Destroy the current session.
+     *
+     * @return void
+     */
+    public function destroySession()
+    {
+        $this->session->flush($this->instance);
+    }
+
+    /**
      * Destroys all of the available cart instances.
      *
      * @return void
