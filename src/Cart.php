@@ -92,8 +92,10 @@ class Cart
      *
      */
     public function countInstances()
-    {
-        return count($this->session->get('cart'));
+    {   
+        if ($this->session->get('cart') != null) {
+            return count($this->session->get('cart'));
+        }
     }
 
     /**
